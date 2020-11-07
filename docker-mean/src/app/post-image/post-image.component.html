@@ -1,0 +1,38 @@
+<!-- <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="form" (submit)="onSaveImage()" *ngIf="!isLoading">
+
+
+         <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid"> 
+        <div class="image-preview">
+      <img [src]="imagePreview" [alt]="image"> 
+            <img *ngFor='let url of urls'  [src]="url" height="200"> <br/>
+
+
+
+
+      </div>
+        <div> 
+        <button  type="button" (click)="filePicker.click()">Select Image</button> 
+        <input type="file" #filePicker (change)="onImagePicked($event)" multiple>
+            <input type='file' (change)="onImagePicked($event)" multiple>
+        </div>
+
+        <button mat-raised-button color="accent" type="submit">Save Image</button>
+    </form> -->
+<form [formGroup]="form" (submit)="onSaveImage()">
+   
+    <input type="file" class="custom-file-input form-control" id="files" multiple (change)="onImagePicked($event)"
+        accept=".png,.jpeg,.jpg">
+   
+    <div class="images-preview mt-2" *ngIf="photos.length">
+        <div formArrayName="photos" *ngFor="let photo of photos.controls; let i = index;">
+            <div [formGroupName]="i">
+                <img [src]="photo.controls.url.value" class="card-img-top" alt="Image Preview" height="200">
+                <button color="warn" (click)="removeImage(i)">DELETE</button>
+            </div>
+        </div>
+    </div>
+    <div>
+    <button color="accent" type="submit">Save Image</button>
+</div>
+</form>
