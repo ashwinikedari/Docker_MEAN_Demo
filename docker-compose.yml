@@ -7,12 +7,14 @@ services:
     #   # - MONGO_INITDB_ROOT_USERNAME=admin
     #   # - MONGO_INITDB_ROOT_PASSWORD=admin
     #   # - MONGO_INITDB_DATABASE=imagica
-    #   - MONGO_URL=mongodb://database/imagica
+      # - MONGO_URL=mongodb://database:27017/imagica
     volumes:
       - .mongo-volume:/data/db
       # - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     ports:
       - 27017:27017
+    networks: 
+      - test_net
 
 
   node:
@@ -26,12 +28,18 @@ services:
       - database
     depends_on:
       - database
+    networks: 
+      - test_net
    
   angular:
     container_name: angular
     build: docker-mean
     ports:
       - 80:80
+    networks: 
+      - test_net
+networks: 
+  test_net:
   
   
 

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const mongoUri= process.env.MONGO_URL ||'mongodb://127.0.0.1:27017/imagica'
+// const mongoUri= process.env.MONGO_URL ||'mongodb://127.0.0.1:27017/imagica'
+const mongoUri= process.env.MONGO_URL ||'mongodb://database:27017/imagica'
 console.log('mongo url', mongoUri)
 mongoose
   .connect(

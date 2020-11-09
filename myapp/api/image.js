@@ -5,7 +5,7 @@ var imageService = require('../services/imageService');
 router.get("/",async(req, res)=>{
     try{
         const result = await imageService.getImages();
-       console.log("images===>", JSON.stringify(result));
+    //    console.log("images===>", JSON.stringify(result));
         return res.status(200).send(result);
     }catch(err){
         return res.status(500).send(err);
